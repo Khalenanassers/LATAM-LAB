@@ -22,7 +22,6 @@ Not "how do we implement a machine learning pipeline."
 
 That question drives the analysis. The answer drives the decision. The decision drives the business forward.
 
-That is what this series is about.
 
 ---
 
