@@ -65,7 +65,7 @@ El análisis ANOVA confirmó que el desperdicio no se distribuye de forma aleato
 Los problemas predecibles son problemas solucionables.
 
 > [!IMPORTANT]
->  **Nota de gobernanz #1:** Cuando las decisiones de pedido son informales, no documentadas e invisibles para la gerencia, no hay manera de auditarlas, mejorarlas ni rendirle cuentas a nadie. Un modelo de pronóstico no solo mejora la precisión — hace que el proceso de toma de decisiones sea transparente.
+>  *Nota de gobernanza #1:* Cuando las decisiones de pedido son informales, no documentadas e invisibles para la gerencia, no hay manera de auditarlas, mejorarlas ni rendirle cuentas a nadie. Un modelo de pronóstico no solo mejora la precisión — hace que el proceso de toma de decisiones sea transparente.
 
 ---
 
@@ -147,6 +147,10 @@ Pero cuestionalo. Pregunta por qué. Pone en duda los supuestos del modelo. Tu c
 
 **Esta semana:** Toma tus 10 productos perecederos con mayor volumen de ventas. Calcula la desviación estándar de los pedidos diarios para cada uno. Si la variabilidad en tus *pedidos* es mayor que la variabilidad en tus *ventas*, tienes un problema de pedidos generado por humanos — no un problema de demanda. Esa es la señal. Este análisis muestra qué hacer a continuación.
 
+> [!IMPORTANT]
+>   *Nota de gobernanza #2:* Sobre las herramientas de código abierto y tus datos. Todas las bibliotecas utilizadas en este proyecto —Python, SQLite, pandas, statsmodels, Prophet— son de código abierto. Esto significa que el código es de acceso público, se puede auditar libremente y lo mantienen comunidades de todo el mundo. No hay cajas negras. Todo el análisis se ejecuta localmente. No hay llamadas a la API de servidores externos. No hay almacenamiento en la nube. Ningún proveedor tiene acceso a su historial de transacciones. SQLite es un archivo en su ordenador: no va a ningún sitio a menos que usted lo envíe a algún lugar. El código abierto elimina el riesgo asociado al proveedor. No elimina el requisito de gobernanza. Alguien de la organización debe comprender qué hace el modelo, comprobar sus supuestos periódicamente y asumir la responsabilidad de la decisión de actuar en función de sus previsiones.
+
+Traducción realizada con la versión gratuita del traductor DeepL.com
 ---
 
 
