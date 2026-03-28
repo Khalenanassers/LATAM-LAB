@@ -1,3 +1,5 @@
+![AI LATAM Lab](assets/banner.svg) 
+
 # AI LATAM Lab
 
 **Practical AI & Analytics for the businesses that run Latin America.**
