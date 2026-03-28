@@ -64,7 +64,8 @@ El análisis ANOVA confirmó que el desperdicio no se distribuye de forma aleato
 
 Los problemas predecibles son problemas solucionables.
 
-> **Nota de gobernanza:** Cuando las decisiones de pedido son informales, no documentadas e invisibles para la gerencia, no hay manera de auditarlas, mejorarlas ni rendirle cuentas a nadie. Un modelo de pronóstico no solo mejora la precisión — hace que el proceso de toma de decisiones sea transparente.
+> [!IMPORTANT]
+>  **Nota de gobernanz #1:** Cuando las decisiones de pedido son informales, no documentadas e invisibles para la gerencia, no hay manera de auditarlas, mejorarlas ni rendirle cuentas a nadie. Un modelo de pronóstico no solo mejora la precisión — hace que el proceso de toma de decisiones sea transparente.
 
 ---
 
