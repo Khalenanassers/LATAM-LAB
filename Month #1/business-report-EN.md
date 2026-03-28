@@ -42,7 +42,8 @@ ANOVA testing confirmed that spoilage is not randomly distributed across the wee
 
 Predictable problems are solvable problems.
 
-> **Governance note:** When ordering decisions are informal, undocumented, and invisible to management, there is no way to audit them, improve them, or hold them accountable. A forecasting model doesn't just improve accuracy — it makes the decision-making process transparent.
+>  [!IMPORTANT]
+> *Governance note #1* When ordering decisions are informal, undocumented, and invisible to management, there is no way to audit them, improve them, or hold them accountable. A forecasting model doesn't just improve accuracy — it makes the decision-making process transparent.
 
 ---
 
@@ -123,6 +124,12 @@ But challenge it. Ask why. Question the model assumptions. Your business knowled
 ### Monday Morning Decision Rule
 
 **This week:** Pull your top 10 perishable items by sales volume. Calculate the standard deviation of daily orders for each one. If the variability in your *orders* is higher than the variability in your *sales*, you have a human-driven waste problem — not a demand problem. That's the signal. This analysis shows what to do next.
+
+> [!IMPORTANT]
+> *Governance note #2: On open-source tools and your data.* 
+>Every library used in this project — Python, SQLite, pandas, statsmodels, Prophet — is open-source. That means the code is publicly readable, freely auditable, and maintained by global communities. There are no black boxes.
+> The entire analysis runs locally. No API calls to external servers. No cloud storage. No vendor with access to your transaction history. SQLite is a file on your computer — it goes nowhere unless you send it somewhere.
+> Open-source removes the vendor risk. It doesn't remove the governance requirement. Someone in the organization should understand what the model is doing, check its assumptions periodically, and own the decision to act on its forecasts.
 
 
 [← Back to Series README](../README.md) 
