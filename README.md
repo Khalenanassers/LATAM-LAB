@@ -84,9 +84,7 @@ This series uses **free, open-source tools** — deliberately. The point is not 
 
 **R core:** `tidyverse` · `tidymodels` · `ggplot2` · `plotly` · `prophet` · `kableExtra`
 
-**Visualization standard:** All charts use `kn_style.py` / `kn_style.R` — the KN dark executive palette. Source in `shared/`.
-
-**Governance tools:** Model cards · SHAP explainability · Bias checklists — built into every project, not added as an afterthought.
+**Visualization standard:** All charts use a pre build pallete and design standart.
 
 ---
 
@@ -111,7 +109,6 @@ Most real business data is unavailable to the public for good reasons. This seri
 
 Every project is documented in **English**. But, the business report are always in Spanish and Enlgish so everybody can use it. 
 ---
-
 
 
 ## Connect
