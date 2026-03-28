@@ -1,4 +1,4 @@
-![AI LATAM Lab](assets/banner.svg) 
+![AI LATAM Lab](asset/banner.svg) 
 
 # AI LATAM Lab
 
