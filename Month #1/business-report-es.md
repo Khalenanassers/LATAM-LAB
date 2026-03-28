@@ -148,12 +148,5 @@ Pero cuestionalo. Pregunta por qué. Pone en duda los supuestos del modelo. Tu c
 
 ---
 
-## Acerca de este proyecto
 
-**Serie:** AI LATAM Lab · Mes 01 de 12
-**Autora:** Khalena Nasser — Business Intelligence & Estrategia
-**Herramientas:** Python · SQLite · Statsmodels · Prophet · Scikit-learn
-**Construido con:** Gemini 2.5 Pro (Google AI Studio · nivel gratuito) como asistente de implementación
-**Datos:** Corporación Favorita Grocery Sales · Kaggle · Uso educativo
-
-[← Volver al README de la serie](../README.md) · [LinkedIn](https://linkedin.com/in/khalenanassers) · [khalenanasser.com](https://khalenanasser.com)
+[← Volver al README de la serie](../README.md) 
