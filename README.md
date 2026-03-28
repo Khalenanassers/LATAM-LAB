@@ -58,8 +58,6 @@ The destination is agentic AI. The journey is learning how each building block w
 
 This series is designed for those willing to learn and make mistake along the way
 
-
-
 ---
 
 Each monthly folder follows the same internal structure:
@@ -74,7 +72,7 @@ mXX-project-name/
 ```
 ## Roadmap 
 
-Month1-> [Stop Feeding the Dumpster](https://github.com/Khalenanassers/LATAM-LAB/tree/5ff36a1ff6edfed9e4d232bb0f525b1c33722d0d/Month%20%231)
+ :one: -> [Stop Feeding the Dumpster](https://github.com/Khalenanassers/LATAM-LAB/tree/5ff36a1ff6edfed9e4d232bb0f525b1c33722d0d/Month%20%231)
 ---
 
 ## Tech Stack
