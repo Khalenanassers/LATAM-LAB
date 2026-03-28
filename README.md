@@ -1,6 +1,6 @@
 <img width="1280" height="400" alt="banner" src="https://github.com/user-attachments/assets/d9d62e14-7fae-4f4a-b802-ec35621334dc" />
 
-# AI LATAM Lab
+#LATAM Lab
 
 **Practical AI & Analytics for the businesses that run Latin America.**
 
