@@ -8,7 +8,7 @@
 >
 > *The biggest issue? --- access and stability* 
 > 
-> *So, the aim of the series is to learn about and how can in answer business questions*
+> *So, the aim of the series is to learn how AI or/and analytics can answer business questions*
 
 ---
 
