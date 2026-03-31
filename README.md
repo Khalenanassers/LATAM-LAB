@@ -107,7 +107,7 @@ Most real business data is unavailable to the public for good reasons. This seri
 
 ### On accessibility
 
-Every project is documented in **English**. But, the business report are always in Spanish and Enlgish so everybody can use it. 
+Every project is documented in **English**. But, the business report are always in Spanish and English so everybody can use it. 
 ---
 
 
