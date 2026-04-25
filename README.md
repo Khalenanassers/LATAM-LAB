@@ -87,6 +87,8 @@ This series uses **free, open-source tools** — deliberately. The point is not 
 
 **R core:** `tidyverse` · `tidymodels` · `ggplot2` · `plotly` · `prophet` · `kableExtra`
 
+**EDA in R** [Automatic exploratory data analysis code](https://github.com/Khalenanassers/LATAM-LAB/blob/main/LATAM%20EDA.R)
+
 **Visualization standard:** All charts use a pre build pallete and design standart.
 
 ---
