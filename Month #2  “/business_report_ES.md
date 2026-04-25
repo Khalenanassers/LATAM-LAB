@@ -154,7 +154,7 @@ Asumiendo que un 30% conservador responde a una oferta de retención. Con un ARP
 
 El siguiente gráfico muestra cuánto contribuyó cada variable a las predicciones del modelo XGBoost — las características que más importan al decidir quién está en riesgo.
 
-<img width="778" height="547" alt="image" src="https://github.com/user-attachments/assets/1478710f-6f89-4123-87c9-62dadc5d3cd5" />
+<img width="922" height="648" alt="image" src="https://github.com/user-attachments/assets/1020ab68-a36a-426d-bf33-cee4dcc853c7" />
 
 El contrato mes a mes domina con una importancia de 0.43 — casi el doble del siguiente predictor. La señal es clara.
 
