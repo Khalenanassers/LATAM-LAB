@@ -80,7 +80,7 @@ All code runs locally. No cloud account required. No API keys. No paid tier.
 
 ## 📙 Business Report
 
-→ [Read the full business report](./M02_Business_Report.md) for the executive summary, ROI calculation, campaign targeting profile, and Monday morning decision rule.
+→ As always in spanish and english 
 
 ---
 
