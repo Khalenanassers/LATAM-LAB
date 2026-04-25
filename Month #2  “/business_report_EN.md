@@ -71,6 +71,8 @@ We analyzed 7,043 customer records across 21 variables. After removing low-signa
 **Pattern 1 — The Month-to-Month Trap**
 Customers on month-to-month contracts churn at dramatically higher rates than those on annual plans. The contract itself is both symptom and cause: customers who haven't committed are already evaluating alternatives. The retention team's primary call-to-action should not be a discount — it should be an offer to convert to a 1-year plan.
 
+<img width="778" height="547" alt="image" src="https://github.com/user-attachments/assets/fdddd099-9f22-45ed-92c2-832a2e41d976" />
+
 **Pattern 2 — The Fiber Optic Paradox**
 Fiber is a premium product, priced accordingly. But premium pricing comes with premium expectations. When service has an outage, or a competitor runs a promotional rate, high-paying Fiber customers are more likely to leave than othes customers — not less. Price point creates vulnerability, not loyalty.
 
