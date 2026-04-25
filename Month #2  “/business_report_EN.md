@@ -5,7 +5,7 @@
 
 ---
 
-## The Question You Were Losing Money Not Knowing
+## The Question 
 
 > *Which postpaid customers are about to cancel — and who do I call first?*
 
