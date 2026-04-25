@@ -74,6 +74,8 @@ Analizamos 7,043 registros de clientes con 21 variables. Después de eliminar ru
 **Patrón 1 — La Trampa Mes a Mes**
 Los clientes sin contrato anual tienen tasas de churn dramáticamente más altas. El contrato en sí mismo es tanto síntoma como causa: quienes no se han comprometido ya están evaluando alternativas. La llamada a la acción del equipo de retención no debería ser un descuento — debería ser una oferta para convertir a un plan anual.
 
+<img width="933" height="598" alt="image" src="https://github.com/user-attachments/assets/96a16956-96a6-4ad6-b24e-ec5cd4b97f74" />
+
 **Patrón 2 — La Paradoja de la Fibra Óptica**
 La Fibra es un producto premium, con precio acorde. Pero el precio premium viene con expectativas premium. Cuando hay una interrupción del servicio, o un competidor lanza una tarifa promocional, los clientes de Fibra son más propensos a irse que los de DSL — no menos. El precio crea vulnerabilidad, no lealtad.
 
