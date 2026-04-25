@@ -65,7 +65,7 @@ All code runs locally. No cloud account required. No API keys. No paid tier.
 ## 📊 Analysis Steps
 
 >  [!IMPORTANT]
-> The data use is pretty clean and structure which is not how happens in real life, the transformation and preparation of the data is critical. With public datasets like this one,usually the process is already done, however, is always important to check. 
+> Real-world customer data is rarely this clean. Missing values, inconsistent formats, duplicated records, columns that mean different things depending on who entered them — that is the norm, not the exception. Data preparation is often 60–70% of the actual work in any analytics project. Public datasets like IBM Telco have already been through that process. The heavy lifting is done. But that does not mean you skip the check.
 
 1. **Load and inspect the dataset** — 7,043 rows, 21 columns, class imbalance check (26.5% churn rate)
 2. **Feature selection — Cramér's V** — measure association between each categorical variable and Churn; drop low-signal features
