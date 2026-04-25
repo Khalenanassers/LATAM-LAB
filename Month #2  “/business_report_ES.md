@@ -5,7 +5,7 @@
 
 ---
 
-## La Pregunta que Te Estaba Costando Dinero No Hacerte
+## La Pregunta 
 
 > *¿Cuáles clientes de postpago están por cancelar — y a quién llamo primero?*
 
