@@ -152,7 +152,7 @@ That is a 160x return on campaign spend — before a single human picks up the p
 
 The chart below shows how much each variable contributed to the XGBoost model's predictions — the features that matter most when deciding who is at risk.
 
-<img width="778" height="547" alt="image" src="https://github.com/user-attachments/assets/1478710f-6f89-4123-87c9-62dadc5d3cd5" />
+<img width="922" height="648" alt="image" src="https://github.com/user-attachments/assets/b1e2ac52-f8ad-4b42-bd0f-d0be33538805" />
 
 This translates directly into a targeting profile. The highest-risk customer looks like this:
  
