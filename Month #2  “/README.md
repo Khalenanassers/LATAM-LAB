@@ -80,7 +80,8 @@ All code runs locally. No cloud account required. No API keys. No paid tier.
 
 ## 📙 Business Report
 
-→ As always in spanish and english 
+🌐 *[Leer en Español](https://github.com/Khalenanassers/LATAM-LAB/blob/main/Month%20%232%20%20%E2%80%9C/business_report_ES.md)*
+🌐 *[Read in English](https://github.com/Khalenanassers/LATAM-LAB/blob/main/Month%20%232%20%20%E2%80%9C/business_report_EN.md)*
 
 ---
 
