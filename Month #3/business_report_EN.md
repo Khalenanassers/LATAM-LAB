@@ -97,4 +97,4 @@ The model finds the window. You make the call.
 ---
 
 *Part of the [AI LATAM Lab](https://github.com/Khalenanassers/LATAM-LAB) · Month 3 of 12*
-*By [Khalena Nasser](https://linkedin.com/in/khalenanassers) · Business Intelligence & Strategy · Hamburg*
+*By Calude and review by  [Khalena Nasser](https://linkedin.com/in/khalenanassers) · Business Intelligence & Strategy · Hamburg*
