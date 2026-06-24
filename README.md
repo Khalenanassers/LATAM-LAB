@@ -75,7 +75,7 @@ mXX-project-name/
  
  :two: -> [Who is about to leave?](https://github.com/Khalenanassers/LATAM-LAB/blob/main/Month%20%232%20%20%E2%80%9C/README.md)
 
- 3️⃣: -> [Can We See It Coming??](https://github.com/Khalenanassers/LATAM-LAB/blob/main/Month%20%233/READ%20ME.md)
+ 3️⃣: -> [Can We See It Coming?](https://github.com/Khalenanassers/LATAM-LAB/blob/main/Month%20%233/READ%20ME.md)
  
 ---
 
