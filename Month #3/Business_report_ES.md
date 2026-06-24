@@ -97,4 +97,4 @@ El modelo encuentra la ventana. Tú haces la llamada.
 ---
 
 *Parte del [AI LATAM Lab](https://github.com/Khalenanassers/LATAM-LAB) · Mes 3 de 12*
-*Por [Khalena Nasser](https://linkedin.com/in/khalenanassers) · Business Intelligence & Strategy · Hamburgo*
+*Por Claude y revisado por [Khalena Nasser](https://linkedin.com/in/khalenanassers) · Business Intelligence & Strategy · Hamburgo*
