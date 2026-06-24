@@ -134,4 +134,4 @@ Cost benchmarks: [IDB — SME Financing in Latin America](https://www.iadb.org/e
 ---
 
 *Part of the [AI LATAM Lab](https://github.com/Khalenanassers/LATAM-LAB) — 12 months of open-source business intelligence for Latin American SMEs.*
-*By [Khalena Nasser](https://linkedin.com/in/khalenanassers) · Business Intelligence & Strategy · Hamburg*
+*By Claude - Revview by [Khalena Nasser](https://linkedin.com/in/khalenanassers) · Business Intelligence & Strategy · Hamburg*
