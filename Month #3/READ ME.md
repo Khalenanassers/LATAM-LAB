@@ -89,8 +89,8 @@ All code runs locally. No cloud account required. No API keys. No paid tier.
 
 ## :green_book: Business Report
 
-:globe_with_meridians: *[Leer en Español](./business_report_ES.md)*
-:globe_with_meridians: *[Read in English](./business_report_EN.md)*
+:globe_with_meridians: *[Leer en Español]([./business_report_ES.md](https://github.com/Khalenanassers/LATAM-LAB/blob/main/Month%20%233/Business_report_ES.md )*
+:globe_with_meridians: *[Read in English]([./business_report_EN.md](https://github.com/Khalenanassers/LATAM-LAB/blob/main/Month%20%233/business_report_EN.md))*
 
 ---
 
