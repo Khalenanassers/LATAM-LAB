@@ -122,7 +122,6 @@ Every project is documented in **English**. But, the business report are always 
 ## Connect
 
 **LinkedIn:** [linkedin.com/in/khalenanassers](https://linkedin.com/in/khalenanassers)
-**Website:** [khalenanasser.com](https://khalenanasser.figma.site/)
 **GitHub:** You're already here.
 
 Questions, feedback, or a business problem you'd like to see in a future month — open an issue or send a message.
