@@ -41,7 +41,7 @@ The series decomposes into a gently declining trend (the cash cushion is slowly 
 
 We ran four forecasting approaches, each representing a different philosophy. The goal was not the best algorithm — it was the most honest answer.
 
-![Four-Model Comparison](./charts/M03_step5_comparison.png)
+[![Four-Model Comparison](./charts/M03_step5_comparison.png)](https://github.com/Khalenanassers/LATAM-LAB/tree/main/Month%20%233)
 
 | Metric | Business Logic | Fourier Reg. | Prophet | ARIMA(1,0,2) |
 |---|---|---|---|---|
