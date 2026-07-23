@@ -41,7 +41,8 @@ La serie se descompone en una tendencia levemente descendente (el colchón de ef
 
 Ejecutamos cuatro enfoques de pronóstico, cada uno con una filosofía distinta. El objetivo no era el mejor algoritmo — era la respuesta más honesta.
 
-<img width="2320" height="1785" alt="image" src="https://github.com/user-attachments/assets/0b4046a2-89b6-4fe2-8106-39d5617fec71" />
+<img width="1462" height="1125" alt="image" src="https://github.com/user-attachments/assets/5061c750-d3f3-4357-8657-a4bc69add394" />
+
 
 | Métrica | Lógica Negocio | Regresión Fourier | Prophet | ARIMA(1,0,2) |
 |---|---|---|---|---|
