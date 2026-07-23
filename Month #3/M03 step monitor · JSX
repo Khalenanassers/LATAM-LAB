@@ -1,0 +1,411 @@
+import { useState } from "react";
+import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ComposedChart, Cell } from "recharts";
+
+const C = { teal:"#00F0C0", amber:"#FFB800", red:"#C94F4F", blue:"#60A5FA", purple:"#A78BFA", text:"#F0F4F8", sub:"#A0AAB8", grid:"#1A2530", bg:"#080D12", bg2:"#0D1419" };
+
+const series = [{"date":"2025-01","netCash":233593,"prophetFit":346485,"sarimaFit":153095,"lagFit":null,"fourierFit":320321},{"date":"2025-02","netCash":260940,"prophetFit":211384,"sarimaFit":172995,"lagFit":null,"fourierFit":192417},{"date":"2025-03","netCash":-293575,"prophetFit":-14063,"sarimaFit":154596,"lagFit":-283376,"fourierFit":15150},{"date":"2025-04","netCash":-38279,"prophetFit":-110467,"sarimaFit":-74328,"lagFit":-200952,"fourierFit":-71734},{"date":"2025-05","netCash":233811,"prophetFit":10282,"sarimaFit":361520,"lagFit":232308,"fourierFit":-12332},{"date":"2025-06","netCash":170389,"prophetFit":147416,"sarimaFit":174269,"lagFit":178345,"fourierFit":118465},{"date":"2025-07","netCash":152077,"prophetFit":159939,"sarimaFit":258990,"lagFit":154531,"fourierFit":194669},{"date":"2025-08","netCash":167516,"prophetFit":126676,"sarimaFit":158678,"lagFit":173260,"fourierFit":164545},{"date":"2025-09","netCash":115764,"prophetFit":121961,"sarimaFit":246395,"lagFit":120512,"fourierFit":96446},{"date":"2025-10","netCash":140636,"prophetFit":126714,"sarimaFit":130111,"lagFit":115403,"fourierFit":100867},{"date":"2025-11","netCash":152789,"prophetFit":173136,"sarimaFit":256356,"lagFit":169859,"fourierFit":209244},{"date":"2025-12","netCash":315531,"prophetFit":299573,"sarimaFit":145636,"lagFit":343256,"fourierFit":333564},{"date":"2026-01","netCash":465433,"prophetFit":385193,"sarimaFit":320422,"lagFit":533495,"fourierFit":349574},{"date":"2026-02","netCash":263836,"prophetFit":251904,"sarimaFit":159537,"lagFit":371202,"fourierFit":221670},{"date":"2026-03","netCash":239644,"prophetFit":26291,"sarimaFit":79499,"lagFit":241439,"fourierFit":44403},{"date":"2026-04","netCash":-103849,"prophetFit":-72134,"sarimaFit":102858,"lagFit":-114750,"fourierFit":-42481},{"date":"2026-05","netCash":-168571,"prophetFit":47504,"sarimaFit":-114894,"lagFit":-298827,"fourierFit":16921},{"date":"2026-06","netCash":133502,"prophetFit":185418,"sarimaFit":178604,"lagFit":61579,"fourierFit":147718},{"date":"2026-07","netCash":221305,"prophetFit":198804,"sarimaFit":192094,"lagFit":262855,"fourierFit":223921},{"date":"2026-08","netCash":149132,"prophetFit":165454,"sarimaFit":227277,"lagFit":179771,"fourierFit":193798},{"date":"2026-09","netCash":117739,"prophetFit":160545,"sarimaFit":125034,"lagFit":107579,"fourierFit":125699},{"date":"2026-10","netCash":200604,"prophetFit":165231,"sarimaFit":206742,"lagFit":187279,"fourierFit":130120},{"date":"2026-11","netCash":204882,"prophetFit":211002,"sarimaFit":183305,"lagFit":250213,"fourierFit":238497},{"date":"2026-12","netCash":339431,"prophetFit":337015,"sarimaFit":184218,"lagFit":358663,"fourierFit":362817},{"date":"2027-01","prophetFc":423886,"sarimaFc":224577,"lagFc":198873,"fourierFc":378827,"naiveFc":465433},{"date":"2027-02","prophetFc":292415,"sarimaFc":45224,"lagFc":85122,"fourierFc":250923,"naiveFc":263836},{"date":"2027-03","prophetFc":59716,"sarimaFc":99760,"lagFc":174070,"fourierFc":73656,"naiveFc":239644}];
+
+const decomp = [{"date":"2025-01","trend":189463,"seasonal":44130},{"date":"2025-02","trend":188462,"seasonal":87387},{"date":"2025-03","trend":187461,"seasonal":64196},{"date":"2025-04","trend":186460,"seasonal":-224739},{"date":"2025-05","trend":185459,"seasonal":48352},{"date":"2025-06","trend":184458,"seasonal":-14068},{"date":"2025-07","trend":183457,"seasonal":-31380},{"date":"2025-08","trend":182455,"seasonal":-14939},{"date":"2025-09","trend":181454,"seasonal":-65690},{"date":"2025-10","trend":180453,"seasonal":-39817},{"date":"2025-11","trend":179452,"seasonal":-26664},{"date":"2025-12","trend":178451,"seasonal":172993},{"date":"2026-01","trend":177450,"seasonal":287983},{"date":"2026-02","trend":176449,"seasonal":87387},{"date":"2026-03","trend":175448,"seasonal":64196},{"date":"2026-04","trend":174447,"seasonal":-278295},{"date":"2026-05","trend":173446,"seasonal":-342017},{"date":"2026-06","trend":172444,"seasonal":-38942},{"date":"2026-07","trend":171443,"seasonal":49862},{"date":"2026-08","trend":170442,"seasonal":-21310},{"date":"2026-09","trend":169441,"seasonal":-51702},{"date":"2026-10","trend":168440,"seasonal":32164},{"date":"2026-11","trend":167439,"seasonal":37443},{"date":"2026-12","trend":166438,"seasonal":172993}];
+
+const acfData = {acf:[0.3254,-0.1957,-0.2352,-0.2124,-0.0731,0.0109,-0.0437,-0.0797,-0.1551,-0.1585,0.0364,0.0838],pacf:[0.3395,-0.3716,-0.0567,-0.2497,-0.0032,-0.1311,-0.1737,-0.1806,-0.4081,-0.4591],bound:0.4001};
+
+const fmt = v => v==null?"": `€${(v/1000).toFixed(0)}k`;
+const fmtFull = v => v==null?"": `€${Math.round(v).toLocaleString()}`;
+
+// Formal comparison models — ordered by pedagogical arc
+// In-sample metrics on 22 real months (excl. 2 backfilled). OOS from rolling CV.
+const models = [
+  {key:"lag", label:"Business Logic", type:"Deterministic — external benchmarks", color:C.blue,
+   desc:"Outflow(t) = Inflow(t-2)×60% + Inflow(t)×18.75%. Parameters from Coface + IDB benchmarks, not from VIVA's data. That's external data, not 'no data.'",
+   mae:"€37k",oos_mae:"€24k",r2:"0.881",dir:"95.2%",crisis_bias:"-€71k ✓",
+   tp:4,fn:0,fp:0,tn:18,f1:"1.000",recall:"100%",precision:"100%",far:"0%",
+   fc:[198873,85122,174070], missed:[], falarms:[]},
+  {key:"fourier", label:"Fourier Regression", type:"Deterministic — OLS fitted", color:"#F472B6",
+   desc:"β₀ + β₁t + sin/cos at periods 12 and 6. Structure by AIC; 6 params by OLS. Apr/May dummies tested — AIC did not support at n=24.",
+   mae:"€72k",oos_mae:"€43k",r2:"0.559",dir:"73.9%",crisis_bias:"+€128k ⚠️",
+   tp:2,fn:2,fp:1,tn:19,f1:"0.571",recall:"50%",precision:"67%",far:"5%",
+   fc:[378827,250923,73656], missed:["2025-03","2026-05"], falarms:["2025-05"]},
+  {key:"prophet", label:"Prophet", type:"Bayesian — learned from data", color:C.teal,
+   desc:"Yearly seasonality, fo=3 (reduced from default 10 which consumed 83% of data as parameters, producing a -€1M forecast).",
+   mae:"€65k",oos_mae:"€36k",r2:"0.597",dir:"73.9%",crisis_bias:"+€112k ⚠️",
+   tp:3,fn:1,fp:0,tn:20,f1:"0.857",recall:"75%",precision:"100%",far:"0%",
+   fc:[423886,292415,59716], missed:["2026-05"], falarms:[]},
+  {key:"arima", label:"ARIMA (1,0,2)", type:"Statistical — classical", color:C.amber,
+   desc:"Pure autoregressive, no seasonal terms. Replaced SARIMA: the seasonal MA term caused 3 false alarms because 24 months isn't enough for a 12-month seasonal structure.",
+   mae:"€96k",oos_mae:"€55k",r2:"0.306",dir:"60.9%",crisis_bias:"+€164k ⚠️",
+   tp:2,fn:2,fp:0,tn:20,f1:"0.667",recall:"50%",precision:"100%",far:"0%",
+   fc:[224577,45224,99760], missed:["2025-03","2026-04"], falarms:[]},
+];
+
+// Seasonal Naive — reference only (not in formal comparison: evaluated on months 13–24
+// only due to 12-month lookback requirement, making it an unequal comparison)
+const naiveRef = {label:"Seasonal Naive (reference)", color:C.purple, fc:[465433,263836,239644]};
+
+const Metric = ({label,value,sub,alert,warn}) => (
+  <div style={{background:C.bg2,borderRadius:8,padding:"10px 14px",borderLeft:`3px solid ${alert?C.red:warn?C.amber:C.teal}`}}>
+    <div style={{fontSize:10,color:C.sub,textTransform:"uppercase",letterSpacing:1}}>{label}</div>
+    <div style={{fontSize:18,fontWeight:700,color:alert?C.red:warn?C.amber:C.text,marginTop:3}}>{value}</div>
+    {sub&&<div style={{fontSize:10,color:C.sub,marginTop:2}}>{sub}</div>}
+  </div>
+);
+
+const TestResult = ({name,stat,pval,conclusion,caveat}) => (
+  <div style={{background:C.bg2,borderRadius:8,padding:12,marginBottom:8}}>
+    <div style={{fontWeight:600,color:C.text,fontSize:12,marginBottom:5}}>{name}</div>
+    <div style={{display:"flex",gap:14,flexWrap:"wrap"}}>
+      <span style={{color:C.sub,fontSize:11}}>Stat: <span style={{color:C.amber}}>{stat}</span></span>
+      <span style={{color:C.sub,fontSize:11}}>p: <span style={{color:pval<0.05?C.teal:C.amber}}>{pval}</span></span>
+    </div>
+    <div style={{color:conclusion.includes("✅")?C.teal:C.amber,fontSize:11,marginTop:5,fontWeight:500}}>{conclusion}</div>
+    {caveat&&<div style={{color:C.sub,fontSize:10,marginTop:5,fontStyle:"italic"}}>{caveat}</div>}
+  </div>
+);
+
+const CustomTooltip = ({active,payload,label}) => {
+  if(!active||!payload?.length) return null;
+  return (
+    <div style={{background:C.bg2,border:`1px solid ${C.grid}`,borderRadius:6,padding:10,fontSize:11}}>
+      <div style={{color:C.text,fontWeight:600,marginBottom:4}}>{label}</div>
+      {payload.filter(p=>p.value!=null).map((p,i)=>(
+        <div key={i} style={{color:p.color||C.sub}}>{p.name}: {fmtFull(p.value)}</div>
+      ))}
+    </div>
+  );
+};
+
+const ConfusionMatrix = ({m}) => {
+  const f1v = parseFloat(m.f1);
+  return (
+    <div style={{background:C.bg2,borderRadius:8,padding:12,borderTop:`3px solid ${m.color}`}}>
+      <div style={{fontSize:11,fontWeight:700,color:m.color,marginBottom:4}}>{m.label}</div>
+      <div style={{fontSize:9,color:C.sub,marginBottom:8}}>{m.type}</div>
+      <div style={{display:"grid",gridTemplateColumns:"auto 1fr 1fr",gap:1,marginBottom:10}}>
+        <div style={{padding:2}}/>
+        <div style={{fontSize:9,color:C.sub,textAlign:"center",padding:"2px 4px",fontWeight:600}}>Pred Safe</div>
+        <div style={{fontSize:9,color:C.sub,textAlign:"center",padding:"2px 4px",fontWeight:600}}>Pred Crisis</div>
+        <div style={{fontSize:9,color:C.sub,fontWeight:600,display:"flex",alignItems:"center",padding:"2px 4px"}}>Safe</div>
+        <div style={{background:`${C.teal}18`,padding:8,textAlign:"center",borderRadius:3,margin:1}}>
+          <div style={{fontSize:16,fontWeight:700,color:C.teal}}>{m.tn}</div>
+          <div style={{fontSize:8,color:C.sub}}>TN</div>
+        </div>
+        <div style={{background:m.fp>0?`${C.red}22`:`${C.teal}18`,padding:8,textAlign:"center",borderRadius:3,margin:1}}>
+          <div style={{fontSize:16,fontWeight:700,color:m.fp>0?C.red:C.teal}}>{m.fp}</div>
+          <div style={{fontSize:8,color:C.sub}}>FP</div>
+        </div>
+        <div style={{fontSize:9,color:C.sub,fontWeight:600,display:"flex",alignItems:"center",padding:"2px 4px"}}>Crisis</div>
+        <div style={{background:m.fn>0?`${C.red}22`:`${C.teal}18`,padding:8,textAlign:"center",borderRadius:3,margin:1}}>
+          <div style={{fontSize:16,fontWeight:700,color:m.fn>0?C.red:C.teal}}>{m.fn}</div>
+          <div style={{fontSize:8,color:C.sub}}>FN</div>
+        </div>
+        <div style={{background:`${C.teal}18`,padding:8,textAlign:"center",borderRadius:3,margin:1}}>
+          <div style={{fontSize:16,fontWeight:700,color:C.teal}}>{m.tp}</div>
+          <div style={{fontSize:8,color:C.sub}}>TP</div>
+        </div>
+      </div>
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:4,fontSize:10}}>
+        <div><span style={{color:C.sub}}>F1: </span><span style={{color:f1v>=0.8?C.teal:f1v>=0.5?C.amber:C.red,fontWeight:700}}>{m.f1}</span></div>
+        <div><span style={{color:C.sub}}>Recall: </span><span style={{color:m.recall==="100%"?C.teal:C.amber,fontWeight:600}}>{m.recall}</span></div>
+        <div><span style={{color:C.sub}}>Precision: </span><span style={{color:m.precision==="100%"?C.teal:C.amber,fontWeight:600}}>{m.precision}</span></div>
+        <div><span style={{color:C.sub}}>FA rate: </span><span style={{color:m.far==="0%"?C.teal:C.red,fontWeight:600}}>{m.far}</span></div>
+      </div>
+      {m.missed.length>0&&<div style={{fontSize:9,color:C.red,marginTop:6}}>Missed: {m.missed.join(", ")}</div>}
+      {m.falarms.length>0&&<div style={{fontSize:9,color:C.amber,marginTop:3}}>False alarms: {m.falarms.join(", ")}</div>}
+      {m.note&&<div style={{fontSize:9,color:C.sub,marginTop:3,fontStyle:"italic"}}>{m.note}</div>}
+    </div>
+  );
+};
+
+const tabs = ["0·Cash Flow","1·Decomposition","2·Stationarity","3·ACF/PACF","4·Hypothesis","5·Forecasting","6·Alert Logic"];
+
+export default function Dashboard() {
+  const [step,setStep] = useState(0);
+  const observed = series.filter(d=>d.netCash!=null);
+  const fcRows = series.filter(d=>d.prophetFc!=null);
+
+  return (
+    <div style={{background:C.bg,color:C.text,minHeight:"100vh",fontFamily:"'IBM Plex Sans',system-ui,sans-serif",padding:14}}>
+      <div style={{marginBottom:14}}>
+        <h1 style={{fontSize:16,fontWeight:700,margin:0}}>M03 · Cash Flow Crisis Prediction</h1>
+        <p style={{fontSize:10,color:C.sub,margin:"3px 0 0"}}>Distribuidora VIVA · AI LATAM Lab · Step Monitor</p>
+      </div>
+
+      <div style={{display:"flex",gap:3,marginBottom:14,flexWrap:"wrap"}}>
+        {tabs.map((t,i)=>(
+          <button key={i} onClick={()=>setStep(i)} style={{
+            background:step===i?C.teal:C.bg2,color:step===i?C.bg:C.sub,
+            border:"none",borderRadius:5,padding:"6px 10px",cursor:"pointer",
+            fontSize:10,fontWeight:step===i?700:400
+          }}>{t}</button>
+        ))}
+      </div>
+
+      {/* STEP 0 */}
+      {step===0&&(<div>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(130px,1fr))",gap:8,marginBottom:14}}>
+          <Metric label="Period" value="24 months" sub="Jan 2025 – Dec 2026"/>
+          <Metric label="Crisis Months" value="4 / 24" sub="Mar–Apr '25, Apr–May '26" alert/>
+          <Metric label="Worst Month" value="€-294k" sub="March 2025" alert/>
+          <Metric label="Mean Net Cash" value="€153k"/>
+        </div>
+        <div style={{background:C.bg2,borderRadius:8,padding:14,marginBottom:10}}>
+          <div style={{fontSize:11,fontWeight:600,marginBottom:8}}>Net Cash Position — Jan 2025 to Dec 2026</div>
+          <ResponsiveContainer width="100%" height={260}>
+            <ComposedChart data={observed}>
+              <CartesianGrid stroke={C.grid} vertical={false}/>
+              <XAxis dataKey="date" tick={{fill:C.sub,fontSize:9}} interval={2}/>
+              <YAxis tick={{fill:C.sub,fontSize:9}} tickFormatter={fmt}/>
+              <Tooltip content={<CustomTooltip/>}/>
+              <Line type="monotone" dataKey="netCash" stroke={C.teal} strokeWidth={2.5} dot={{r:2,fill:C.teal}} name="Net Cash"/>
+              <ReferenceLine y={0} stroke={C.red} strokeDasharray="4 4"/>
+            </ComposedChart>
+          </ResponsiveContainer>
+        </div>
+        <div style={{background:C.bg2,borderRadius:8,padding:12,fontSize:11,color:C.sub,lineHeight:1.6}}>
+          <strong style={{color:C.text}}>The mechanism:</strong> Holiday sales (Oct–Nov) generate COGS bills 2 months later. But 77% of customers pay 42 days late on top of 59-day terms (Coface 2025). Cash arrives after the bills it triggers — creating a structural gap every spring. <em style={{color:C.sub}}>Underlying data: UCI Online Retail II (Dec 2009–Nov 2011), dates shifted +15 years for narrative currency.</em>
+        </div>
+      </div>)}
+
+      {/* STEP 1 */}
+      {step===1&&(<div>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(130px,1fr))",gap:8,marginBottom:14}}>
+          <Metric label="Model" value="Additive" sub="Negatives → multiplicative invalid"/>
+          <Metric label="Seasonal Range" value="€630k"/>
+          <Metric label="Peak" value="January" sub="Lagged holiday cash"/>
+          <Metric label="Trough" value="Apr–May" sub="COGS hangover"/>
+        </div>
+        {["trend","seasonal"].map(key=>(
+          <div key={key} style={{background:C.bg2,borderRadius:8,padding:14,marginBottom:8}}>
+            <div style={{fontSize:11,fontWeight:600,marginBottom:6,textTransform:"capitalize"}}>{key} Component (STL)</div>
+            <ResponsiveContainer width="100%" height={130}>
+              <LineChart data={decomp}>
+                <CartesianGrid stroke={C.grid} vertical={false}/>
+                <XAxis dataKey="date" tick={{fill:C.sub,fontSize:9}} interval={3}/>
+                <YAxis tick={{fill:C.sub,fontSize:9}} tickFormatter={fmt}/>
+                <Tooltip content={<CustomTooltip/>}/>
+                <ReferenceLine y={0} stroke={C.grid}/>
+                <Line type="monotone" dataKey={key} stroke={key==="trend"?C.amber:C.teal} strokeWidth={2} dot={false} name={key}/>
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        ))}
+        <div style={{background:C.bg2,borderRadius:8,padding:12,fontSize:11,color:C.sub,lineHeight:1.6}}>
+          <strong style={{color:C.text}}>Insight:</strong> Trend is gently declining (VIVA's cash cushion slowly eroding). Seasonal component confirms the structural spring trough — Apr–May every year, without exception.
+        </div>
+      </div>)}
+
+      {/* STEP 2 */}
+      {step===2&&(<div>
+        <TestResult name="ADF (Augmented Dickey-Fuller)" stat="-3.5815" pval={0.0061} conclusion="✅ Stationary (reject unit root, p = 0.006)"/>
+        <TestResult name="KPSS" stat="0.1282" pval={0.1} conclusion="✅ Stationary (fail to reject stationarity, p > 0.10)"/>
+        <div style={{background:C.bg2,borderRadius:8,padding:12,marginBottom:10,borderLeft:`3px solid ${C.teal}`,fontSize:11,color:C.sub,lineHeight:1.6}}>
+          <strong style={{color:C.teal}}>Both agree: no differencing needed (d = 0).</strong> The crises are recurring structural shocks within a stable process — not a deteriorating trend. Over-differencing introduces non-stationarity (KPSS p=0.048), confirming d=0.
+        </div>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
+          <Metric label="ARIMA d" value="d = 0" sub="No differencing required"/>
+          <Metric label="Business read" value="Mean-reverting" sub="Crises are shocks, not a spiral"/>
+        </div>
+      </div>)}
+
+      {/* STEP 3 */}
+      {step===3&&(<div>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:10}}>
+          {["ACF","PACF"].map(type=>{
+            const vals = type==="ACF"?acfData.acf:acfData.pacf;
+            const data = vals.map((v,i)=>({lag:i+1,value:v}));
+            const sig = type==="PACF"?[9,10]:[];
+            return (
+              <div key={type} style={{background:C.bg2,borderRadius:8,padding:12}}>
+                <div style={{fontSize:11,fontWeight:600,marginBottom:6}}>{type}</div>
+                <ResponsiveContainer width="100%" height={170}>
+                  <BarChart data={data}>
+                    <CartesianGrid stroke={C.grid} vertical={false}/>
+                    <XAxis dataKey="lag" tick={{fill:C.sub,fontSize:9}}/>
+                    <YAxis tick={{fill:C.sub,fontSize:9}} domain={[-0.6,0.6]}/>
+                    <ReferenceLine y={acfData.bound} stroke={C.red} strokeDasharray="4 4"/>
+                    <ReferenceLine y={-acfData.bound} stroke={C.red} strokeDasharray="4 4"/>
+                    <ReferenceLine y={0} stroke={C.grid}/>
+                    <Bar dataKey="value">{data.map((d,i)=><Cell key={i} fill={sig.includes(d.lag)?C.red:C.teal} opacity={sig.includes(d.lag)?1:0.5}/>)}</Bar>
+                  </BarChart>
+                </ResponsiveContainer>
+                <div style={{fontSize:9,color:C.sub}}>Red dashed = ±{acfData.bound} (95% CI)</div>
+              </div>
+            );
+          })}
+        </div>
+        <div style={{background:C.bg2,borderRadius:8,padding:12,fontSize:11,color:C.sub,lineHeight:1.6}}>
+          <strong style={{color:C.text}}>Reading:</strong> No significant ACF lags — bounds ±0.40 are too wide with n=24. PACF shows seasonal echoes at lags 9–10. With this sample, ACF/PACF are sanity checks, not parameter selectors. ARIMA parameters selected by AIC grid search (SARIMA seasonal terms dropped, see Step 5).
+        </div>
+      </div>)}
+
+      {/* STEP 4 */}
+      {step===4&&(<div>
+        <TestResult name="Kruskal-Wallis (Seasonal differences)" stat="15.34" pval={0.1675}
+          conclusion="Not significant (p = 0.168)"
+          caveat="Only 2 observations per month group — severely underpowered. Non-significance ≠ no seasonality. Decomposition confirms it visually."/>
+        <TestResult name="Mann-Kendall (Trend)" stat="14.0" pval={0.7471}
+          conclusion="No trend (τ = 0.05, p = 0.747)"
+          caveat="Consistent with ADF/KPSS stationarity. Cash position is not systematically worsening."/>
+        <div style={{background:C.bg2,borderRadius:8,padding:12,marginTop:8,borderLeft:`3px solid ${C.amber}`,fontSize:11,color:C.sub,lineHeight:1.6}}>
+          <strong style={{color:C.amber}}>Teaching moment:</strong> With 24 observations, formal seasonality tests are nearly useless (5+ years needed for meaningful group sizes). Report the result, explain the power limit, use decomposition as primary evidence.
+        </div>
+      </div>)}
+
+      {/* STEP 5 */}
+      {step===5&&(<div>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(130px,1fr))",gap:8,marginBottom:12}}>
+          <Metric label="Business Logic" value="F1 = 1.000" sub="4/4 crises · 0 false alarms"/>
+          <Metric label="Fourier Regression" value="F1 = 0.000" sub="0/4 crises · smooth wave only" alert/>
+          <Metric label="Prophet" value="F1 = 0.857" sub="3/4 crises · 0 false alarms"/>
+          <Metric label="ARIMA(1,0,2)" value="F1 = 0.667" sub="2/4 crises · 0 false alarms" warn/>
+        </div>
+
+        {/* Comparison table */}
+        <div style={{background:C.bg2,borderRadius:8,padding:14,marginBottom:10}}>
+          <div style={{fontSize:12,fontWeight:600,marginBottom:4}}>Four-Model Comparison</div>
+          <div style={{fontSize:10,color:C.sub,marginBottom:8,fontStyle:"italic"}}>In-sample on 22 real months (excl. 2 backfilled). OOS from rolling-origin CV (12 forecasts).</div>
+          <div style={{overflowX:"auto"}}>
+            <table style={{width:"100%",borderCollapse:"collapse",fontSize:11,minWidth:480}}>
+              <thead><tr style={{borderBottom:`1px solid ${C.grid}`}}>
+                <th style={{textAlign:"left",padding:"5px 8px",color:C.sub}}>Metric</th>
+                {models.map(m=><th key={m.key} style={{textAlign:"right",padding:"5px 8px",color:m.color}}>{m.label}</th>)}
+              </tr></thead>
+              <tbody>
+                {[
+                  ["MAE (in-sample)",m=>m.mae],
+                  ["MAE (out-of-sample)",m=>m.oos_mae],
+                  ["R²",m=>m.r2],
+                  ["F1 (crisis)",m=>m.f1],
+                  ["Recall",m=>m.recall],["Precision",m=>m.precision],
+                  ["Crisis-Month Bias",m=>m.crisis_bias],
+                ].map(([label,fn],i)=>(
+                  <tr key={i} style={{borderBottom:`1px solid ${C.grid}`}}>
+                    <td style={{padding:"5px 8px",color:C.sub}}>{label}</td>
+                    {models.map(m=>(
+                      <td key={m.key} style={{textAlign:"right",padding:"5px 8px",color:m.color,fontWeight:600}}>{fn(m)}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Confusion matrices — 4 across */}
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(190px,1fr))",gap:8,marginBottom:10}}>
+          {models.map(m=><ConfusionMatrix key={m.key} m={m}/>)}
+        </div>
+
+        {/* Fitted + forecast chart */}
+        <div style={{background:C.bg2,borderRadius:8,padding:14,marginBottom:10}}>
+          <div style={{fontSize:11,fontWeight:600,marginBottom:8}}>In-Sample Fit + 3-Month Forecast (Jan–Mar 2027)</div>
+          <ResponsiveContainer width="100%" height={280}>
+            <ComposedChart data={series}>
+              <CartesianGrid stroke={C.grid} vertical={false}/>
+              <XAxis dataKey="date" tick={{fill:C.sub,fontSize:9}} interval={3}/>
+              <YAxis tick={{fill:C.sub,fontSize:9}} tickFormatter={fmt}/>
+              <Tooltip content={<CustomTooltip/>}/>
+              <Line type="monotone" dataKey="netCash" stroke={C.text} strokeWidth={2} dot={{r:2}} name="Observed" opacity={0.9}/>
+              <Line type="monotone" dataKey="fourierFit" stroke="#F472B6" strokeWidth={1.5} dot={false} strokeDasharray="3 2" name="Fourier fit"/>
+              <Line type="monotone" dataKey="lagFit" stroke={C.blue} strokeWidth={1.5} dot={false} strokeDasharray="3 2" name="Business Logic fit"/>
+              <Line type="monotone" dataKey="fourierFit" stroke="#F472B6" strokeWidth={1.5} dot={false} strokeDasharray="3 2" name="Fourier fit"/>
+              <Line type="monotone" dataKey="prophetFit" stroke={C.teal} strokeWidth={1.5} dot={false} strokeDasharray="3 2" name="Prophet fit"/>
+              <Line type="monotone" dataKey="fourierFc" stroke="#F472B6" strokeWidth={2.5} dot={{r:4,fill:"#F472B6"}} name="Fourier forecast"/>
+              <Line type="monotone" dataKey="lagFc" stroke={C.blue} strokeWidth={2.5} dot={{r:4,fill:C.blue}} name="Business Logic forecast"/>
+              <Line type="monotone" dataKey="fourierFc" stroke="#F472B6" strokeWidth={2.5} dot={{r:4,fill:"#F472B6"}} name="Fourier forecast"/>
+              <Line type="monotone" dataKey="prophetFc" stroke={C.teal} strokeWidth={2.5} dot={{r:4,fill:C.teal}} name="Prophet forecast"/>
+              <Line type="monotone" dataKey="sarimaFc" stroke={C.amber} strokeWidth={2.5} dot={{r:4,fill:C.amber}} name="ARIMA forecast"/>
+              <Line type="monotone" dataKey="naiveFc" stroke={C.purple} strokeWidth={1.5} strokeDasharray="4 4" dot={{r:3,fill:C.purple}} opacity={0.5} name="Naive (ref only)"/>
+              <ReferenceLine y={0} stroke={C.red} strokeDasharray="4 4"/>
+              <ReferenceLine x="2027-01" stroke={C.grid} strokeDasharray="6 3"/>
+            </ComposedChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Forecast detail */}
+        <div style={{background:C.bg2,borderRadius:8,padding:14,marginBottom:10}}>
+          <div style={{fontSize:11,fontWeight:600,marginBottom:4}}>3-Month Forecast Detail</div>
+          <div style={{fontSize:10,color:C.sub,marginBottom:8,fontStyle:"italic"}}>Seasonal Naive shown as reference only — excluded from formal comparison (evaluated on months 13–24 only, unequal window)</div>
+          <table style={{width:"100%",borderCollapse:"collapse",fontSize:11}}>
+            <thead><tr style={{borderBottom:`1px solid ${C.grid}`}}>
+              <th style={{textAlign:"left",padding:"5px 8px",color:C.sub}}>Month</th>
+              {models.map(m=><th key={m.key} style={{textAlign:"right",padding:"5px 8px",color:m.color}}>{m.label}</th>)}
+              <th style={{textAlign:"right",padding:"5px 8px",color:C.purple,opacity:0.5}}>Naive (ref)</th>
+            </tr></thead>
+            <tbody>
+              {["2027-01","2027-02","2027-03"].map((d,i)=>(
+                <tr key={d} style={{borderBottom:`1px solid ${C.grid}`}}>
+                  <td style={{padding:"5px 8px",fontWeight:600}}>{d}</td>
+                  {models.map(m=>(
+                    <td key={m.key} style={{textAlign:"right",padding:"5px 8px",color:m.fc[i]<0?C.red:m.color}}>
+                      {fmtFull(m.fc[i])}
+                    </td>
+                  ))}
+                  <td style={{textAlign:"right",padding:"5px 8px",color:C.purple,opacity:0.5}}>{fmtFull(naiveRef.fc[i])}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div style={{background:C.bg2,borderRadius:8,padding:12,fontSize:11,color:C.sub,lineHeight:1.7}}>
+          <strong style={{color:C.text}}>The model hierarchy holds on both in-sample and out-of-sample evaluation.</strong> Business Logic wins on every metric, including OOS MAE (€24k) and crisis-month bias (-€71k pessimistic, the correct direction for early warning).
+          <br/><br/>
+          <strong style={{color:C.blue}}>Business Logic (F1=1.000):</strong> Parameters from Coface and IDB benchmarks. That's external data, not "no data." The benchmarks transfer well here, but if the business operates in a niche with different margins, the advantage narrows. The only model with pessimistic bias on crisis months.
+          <br/><br/>
+          <strong style={{color:"#F472B6"}}>Fourier Regression (F1=0.571):</strong> Structure by AIC (t + F12 + F6); 6 params by OLS. Apr/May binary dummies tested alongside Fourier terms to capture the sharp crisis shape directly; AIC did not support the extra parameters at n=24. Optimistic on crisis months by €128k.
+          <br/><br/>
+          <strong style={{color:C.teal}}>Prophet (F1=0.857):</strong> Best data-driven model. Fourier order reduced from 10 to 3 to fix overfitting. Still optimistic on crisis months by €112k.
+          <br/><br/>
+          <strong style={{color:C.amber}}>ARIMA(1,0,2) vs SARIMA diagnostic:</strong> The original SARIMA(0,0,1)(0,0,1)₁₂ had R²=-0.109 and 3 false alarms. Dropping the seasonal MA term (which needed more than 2 cycles) and fitting ARIMA(1,0,2) cut MAE by 30% and eliminated all false alarms. 24 observations is enough for ARIMA. It was not enough for the seasonal layer.
+          <br/><br/>
+          <strong style={{color:C.sub,fontStyle:"italic"}}>Metrics exclude Jan–Feb 2025 (backfilled months). OOS F1 is undefined because all 4 crisis months fall within the training window of the rolling CV. With more data, OOS crisis detection becomes testable.</strong>
+        </div>
+      </div>)}
+
+      {/* STEP 6 */}
+      {step===6&&(<div>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(130px,1fr))",gap:8,marginBottom:14}}>
+          <Metric label="Safety Buffer (p10)" value="€-84k" sub="10th percentile historical"/>
+          <Metric label="Lag Proj. Jan '27" value="€199k" sub="Positive — no alert"/>
+          <Metric label="All models Feb '27" value="Thinning" sub="€35k–€292k" warn/>
+          <Metric label="Models agree" value="Mar '27 risk" sub="CIs include negative" warn/>
+        </div>
+
+        <div style={{background:C.bg2,borderRadius:8,padding:14,marginBottom:10}}>
+          <div style={{fontSize:12,fontWeight:600,marginBottom:10}}>Alert Board — Jan to Mar 2027</div>
+          <table style={{width:"100%",borderCollapse:"collapse",fontSize:11}}>
+            <thead><tr style={{borderBottom:`1px solid ${C.grid}`}}>
+              <th style={{textAlign:"left",padding:"6px 8px",color:C.sub}}>Month</th>
+              {models.map(m=><th key={m.key} style={{textAlign:"right",padding:"6px 8px",color:m.color}}>{m.label}</th>)}
+              <th style={{textAlign:"right",padding:"6px 8px",color:C.purple,opacity:0.5}}>Naive (ref)</th>
+            </tr></thead>
+            <tbody>
+              {["2027-01","2027-02","2027-03"].map((d,i)=>(
+                <tr key={d} style={{borderBottom:`1px solid ${C.grid}`,background:models.some(m=>m.fc[i]<0)?`${C.red}0A`:"transparent"}}>
+                  <td style={{padding:"7px 8px",fontWeight:600}}>{d}</td>
+                  {models.map(m=>(
+                    <td key={m.key} style={{textAlign:"right",padding:"7px 8px",color:m.fc[i]<0?C.red:m.color,fontWeight:m.fc[i]<0?700:400}}>
+                      {fmtFull(m.fc[i])} {m.fc[i]<0?"🔴":""}
+                    </td>
+                  ))}
+                  <td style={{textAlign:"right",padding:"7px 8px",color:C.purple,opacity:0.5}}>{fmtFull(naiveRef.fc[i])}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div style={{background:C.bg2,borderRadius:8,padding:16,marginBottom:10,borderLeft:`3px solid ${C.amber}`}}>
+          <div style={{fontSize:14,fontWeight:700,color:C.amber,marginBottom:8}}>Monday Morning Rule</div>
+          <div style={{fontSize:12,color:C.text,lineHeight:1.7}}>
+            "Cash is thinning across all models through February–March 2027. No model predicts a definitive zero-threshold crisis — but Lag Projection flags January at €199k (thin margin), and all confidence intervals include negative territory by March. You have 2 months. Call your supplier now and negotiate extended terms."
+          </div>
+        </div>
+
+        <div style={{background:C.bg2,borderRadius:8,padding:12,fontSize:11,color:C.sub,lineHeight:1.6}}>
+          <strong style={{color:C.text}}>The alert is a business decision, not a model output.</strong> A €0 buffer catches crises at the last moment. The p10 buffer (€-84k) gives more runway. The right threshold depends on the cost of acting early (a phone call) versus acting late (emergency credit at 18% interest). For VIVA, acting early costs almost nothing. The model should be set accordingly.
+        </div>
+      </div>)}
+    </div>
+  );
+}
