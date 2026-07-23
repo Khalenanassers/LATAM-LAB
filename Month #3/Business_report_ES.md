@@ -53,7 +53,7 @@ Ejecutamos cuatro enfoques de pronóstico, cada uno con una filosofía distinta.
 | Sesgo general (PBIAS) | **-0.6%** ✓ | 0.0% | -0.1% ✓ | +6.0% ⚠️ |
 | Sesgo en meses de crisis | **-€71k** ✓ | +€128k ⚠️ | +€112k ⚠️ | +€164k ⚠️ |
 
-**Lógica de Negocio** — aritmética pura con benchmarks de Coface y del BID, sin ajuste — supera a todos los modelos ML y estadísticos en todas las métricas. Con 24 observaciones y un mecanismo conocido, codificar la lógica de negocio directamente supera a intentar aprenderla de datos limitados.
+**Lógica de Negocio** — aritmética pura con benchmarks de Coface y del BID, sin ajuste — supera a todos los modelos ML y estadísticos en todas las métricas. Con 24 observaciones y un mecanismo conocido, codificar la lógica de negocio directamente supera a intentar aprenderla de datos limitados. Pero ⚠️, en este caso, podria ser suficiente el conocimiento pero en otros no, los modelos te permiten navegar con mas facilidad y pueden identificar cosas que no son tan faciles de ver. 
 
 **El hallazgo de sesgo es el argumento más fuerte.** La Lógica de Negocio es el único modelo pesimista en meses de crisis — cuando las cosas van mal, predice que son peores de lo que realmente son (por €71k en promedio). Eso es exactamente lo que un sistema de alerta temprana debe hacer. Todos los demás modelos son optimistas en meses de crisis (por €112k–€164k), subestimando sistemáticamente el peligro justo cuando la alerta necesita activarse.
 
