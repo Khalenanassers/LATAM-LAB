@@ -52,7 +52,7 @@ We ran four forecasting approaches, each representing a different philosophy. Th
 | Overall Bias (PBIAS) | **-0.6%** ✓ | 0.0% | -0.1% ✓ | +6.0% ⚠️ |
 | Crisis-Month Bias | **-€71k** ✓ | +€128k ⚠️ | +€112k ⚠️ | +€164k ⚠️ |
 
-**Business Logic** — pure arithmetic from Coface and IDB benchmarks, no fitting — outperforms every ML and statistical model on every metric. With 24 observations and a known mechanism, encoding the business logic directly beats trying to learn it from limited data.
+**Business Logic** — pure arithmetic from Coface and IDB benchmarks, no fitting — outperforms every ML and statistical model on every metric. With 24 observations and a known mechanism, encoding the business logic directly beats trying to learn it from limited data. Still the business logic will fail when more data its include it. 
 
 **The bias finding is the strongest argument.** Business Logic is the only model that's pessimistic on crisis months — when things go wrong, it predicts they're worse than they actually are (by €71k on average). That's exactly what an early warning system should do. Every other model is optimistic on crisis months (by €112k–€164k), systematically underestimating the danger in exactly the moments when the alert needs to fire.
 
