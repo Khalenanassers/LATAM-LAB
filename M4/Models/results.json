@@ -1,0 +1,431 @@
+{
+ "n_train": 640,
+ "n_test": 160,
+ "test_late_rate": 0.20625,
+ "train_late": 133,
+ "test_late": 33,
+ "train_late_rate": 0.2078125,
+ "split_date": "random 80/20 stratified",
+ "models": [
+  {
+   "name": "Majority baseline",
+   "accuracy": 0.79375,
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.0,
+   "auc": 0.5,
+   "tp": 0,
+   "fp": 0,
+   "fn": 33,
+   "tn": 127
+  },
+  {
+   "name": "Logistic Regression",
+   "accuracy": 0.81875,
+   "precision": 0.54,
+   "recall": 0.8181818181818182,
+   "f1": 0.6506024096385542,
+   "auc": 0.9064662371748986,
+   "tp": 27,
+   "fp": 23,
+   "fn": 6,
+   "tn": 104
+  },
+  {
+   "name": "Decision Tree",
+   "accuracy": 0.8375,
+   "precision": 0.6,
+   "recall": 0.6363636363636364,
+   "f1": 0.6176470588235294,
+   "auc": 0.891195418754474,
+   "tp": 21,
+   "fp": 14,
+   "fn": 12,
+   "tn": 113
+  },
+  {
+   "name": "Random Forest",
+   "accuracy": 0.85625,
+   "precision": 0.6388888888888888,
+   "recall": 0.696969696969697,
+   "f1": 0.6666666666666666,
+   "auc": 0.9086136960152708,
+   "tp": 23,
+   "fp": 13,
+   "fn": 10,
+   "tn": 114
+  },
+  {
+   "name": "Gradient Boosting (XGBoost stand-in)",
+   "accuracy": 0.84375,
+   "precision": 0.6176470588235294,
+   "recall": 0.6363636363636364,
+   "f1": 0.6268656716417911,
+   "auc": 0.9012168933428776,
+   "tp": 21,
+   "fp": 13,
+   "fn": 12,
+   "tn": 114
+  }
+ ],
+ "best": "Logistic Regression",
+ "eur": {
+  "TP": 351038.83,
+  "FP": 688021.2,
+  "FN": 209621.31999999998,
+  "TN": 2537577.01
+ },
+ "tier": [
+  {
+   "tier": "Chronic",
+   "n": 37,
+   "late": 0.6216216216216216,
+   "caught": 1.0
+  },
+  {
+   "tier": "Moderate",
+   "n": 30,
+   "late": 0.3333333333333333,
+   "caught": 0.4
+  },
+  {
+   "tier": "Reliable",
+   "n": 93,
+   "late": 0.0,
+   "caught": 0.0
+  }
+ ],
+ "lr": {
+  "intercept": -2.81221356117387,
+  "C": 1.0,
+  "solver": "lbfgs",
+  "max_iter": 1000,
+  "coefs": [
+   {
+    "feature": "log_amt",
+    "label": "Invoice size (log euros)",
+    "coef": -0.021390772604045365,
+    "odds_ratio": 0.9788363873799548,
+    "mean": 9.70986551664301,
+    "sd": 0.8697910727995118
+   },
+   {
+    "feature": "month",
+    "label": "Month issued",
+    "coef": -0.13030455797709578,
+    "odds_ratio": 0.8778280406724065,
+    "mean": 6.434375,
+    "sd": 3.392833382200635
+   },
+   {
+    "feature": "prior_n",
+    "label": "Invoices the customer had before",
+    "coef": -0.19348186707505002,
+    "odds_ratio": 0.8240847791270832,
+    "mean": 15.371875,
+    "sd": 16.03372879227957
+   },
+   {
+    "feature": "prior_late_rate",
+    "label": "Customer's past late rate",
+    "coef": 0.1537811366450292,
+    "odds_ratio": 1.1662356126055162,
+    "mean": 0.21225018753089314,
+    "sd": 0.3131193160982921
+   },
+   {
+    "feature": "tier_Reliable",
+    "label": "Customer is a Reliable payer",
+    "coef": -1.8594117397210066,
+    "odds_ratio": 0.15576423333352066,
+    "mean": 0.5984375,
+    "sd": 0.4902142986426956
+   },
+   {
+    "feature": "tier_Moderate",
+    "label": "Customer is a Sometimes-late payer",
+    "coef": 0.5986306504348329,
+    "odds_ratio": 1.8196253903680963,
+    "mean": 0.1546875,
+    "sd": 0.36160652281692873
+   },
+   {
+    "feature": "tier_Chronic",
+    "label": "Customer is a Chronic late payer",
+    "coef": 1.6119019905386927,
+    "odds_ratio": 5.012335582200489,
+    "mean": 0.246875,
+    "sd": 0.43119338396478213
+   }
+  ]
+ },
+ "top_calls": [
+  {
+   "invoice_id": "INV-00696",
+   "customer_id": "CUST-007",
+   "customer_tier": "Chronic",
+   "amount_eur": 30227.72,
+   "p": 0.936,
+   "days_late": -11,
+   "outcome": "FP",
+   "why": [
+    "Customer is a Chronic late payer",
+    "Customer's past late rate"
+   ]
+  },
+  {
+   "invoice_id": "INV-00474",
+   "customer_id": "CUST-032",
+   "customer_tier": "Chronic",
+   "amount_eur": 8028.68,
+   "p": 0.931,
+   "days_late": 47,
+   "outcome": "TP",
+   "why": [
+    "Customer is a Chronic late payer",
+    "Customer's past late rate"
+   ]
+  },
+  {
+   "invoice_id": "INV-00212",
+   "customer_id": "CUST-056",
+   "customer_tier": "Chronic",
+   "amount_eur": 1277.98,
+   "p": 0.93,
+   "days_late": 36,
+   "outcome": "TP",
+   "why": [
+    "Customer is a Chronic late payer",
+    "Customer's past late rate"
+   ]
+  },
+  {
+   "invoice_id": "INV-00502",
+   "customer_id": "CUST-053",
+   "customer_tier": "Chronic",
+   "amount_eur": 10362.47,
+   "p": 0.925,
+   "days_late": 37,
+   "outcome": "TP",
+   "why": [
+    "Customer is a Chronic late payer",
+    "Month issued"
+   ]
+  },
+  {
+   "invoice_id": "INV-00476",
+   "customer_id": "CUST-039",
+   "customer_tier": "Chronic",
+   "amount_eur": 11765.38,
+   "p": 0.923,
+   "days_late": 10,
+   "outcome": "FP",
+   "why": [
+    "Customer is a Chronic late payer",
+    "Customer's past late rate"
+   ]
+  },
+  {
+   "invoice_id": "INV-00448",
+   "customer_id": "CUST-032",
+   "customer_tier": "Chronic",
+   "amount_eur": 15816.21,
+   "p": 0.923,
+   "days_late": 154,
+   "outcome": "TP",
+   "why": [
+    "Customer is a Chronic late payer",
+    "Customer's past late rate"
+   ]
+  },
+  {
+   "invoice_id": "INV-00516",
+   "customer_id": "CUST-053",
+   "customer_tier": "Chronic",
+   "amount_eur": 106545.03,
+   "p": 0.921,
+   "days_late": 7,
+   "outcome": "FP",
+   "why": [
+    "Customer is a Chronic late payer",
+    "Customer's past late rate"
+   ]
+  },
+  {
+   "invoice_id": "INV-00467",
+   "customer_id": "CUST-022",
+   "customer_tier": "Chronic",
+   "amount_eur": 9269.75,
+   "p": 0.917,
+   "days_late": 86,
+   "outcome": "TP",
+   "why": [
+    "Customer is a Chronic late payer",
+    "Customer's past late rate"
+   ]
+  },
+  {
+   "invoice_id": "INV-00293",
+   "customer_id": "CUST-053",
+   "customer_tier": "Chronic",
+   "amount_eur": 30859.44,
+   "p": 0.917,
+   "days_late": -6,
+   "outcome": "FP",
+   "why": [
+    "Customer is a Chronic late payer",
+    "Customer's past late rate"
+   ]
+  },
+  {
+   "invoice_id": "INV-00402",
+   "customer_id": "CUST-053",
+   "customer_tier": "Chronic",
+   "amount_eur": 34789.37,
+   "p": 0.917,
+   "days_late": 65,
+   "outcome": "TP",
+   "why": [
+    "Customer is a Chronic late payer",
+    "Customer's past late rate"
+   ]
+  }
+ ],
+ "lr_unweighted": {
+  "name": "Logistic Regression, no class_weight",
+  "accuracy": 0.85,
+  "precision": 0.6216216216216216,
+  "recall": 0.696969696969697,
+  "f1": 0.6571428571428571,
+  "auc": 0.9045573848723455,
+  "tp": 23,
+  "fp": 14,
+  "fn": 10,
+  "tn": 113
+ },
+ "complexity": [
+  {
+   "C": 0.001,
+   "train": 0.890625,
+   "test": 0.83125,
+   "recall": 0.7272727272727273
+  },
+  {
+   "C": 0.01,
+   "train": 0.884375,
+   "test": 0.8125,
+   "recall": 0.7575757575757576
+  },
+  {
+   "C": 0.1,
+   "train": 0.86875,
+   "test": 0.8125,
+   "recall": 0.7878787878787878
+  },
+  {
+   "C": 1,
+   "train": 0.8515625,
+   "test": 0.81875,
+   "recall": 0.8181818181818182
+  },
+  {
+   "C": 10,
+   "train": 0.8515625,
+   "test": 0.8125,
+   "recall": 0.8181818181818182
+  },
+  {
+   "C": 100,
+   "train": 0.8515625,
+   "test": 0.8125,
+   "recall": 0.8181818181818182
+  },
+  {
+   "C": 1000,
+   "train": 0.853125,
+   "test": 0.8125,
+   "recall": 0.8181818181818182
+  }
+ ],
+ "time_split": {
+  "accuracy": 0.775,
+  "recall": 1.0,
+  "precision": 0.4,
+  "n_test": 160,
+  "n_late": 24
+ },
+ "company": {
+  "billed": 18999999.86,
+  "late_eur": 3579968.0,
+  "n_invoices": 800,
+  "n_late": 166,
+  "n_late_customers": 23,
+  "n_customers": 59,
+  "top": [
+   {
+    "customer": "CUST-053",
+    "tier": "Chronic",
+    "eur": 815032.48,
+    "n": 37
+   },
+   {
+    "customer": "CUST-007",
+    "tier": "Chronic",
+    "eur": 692361.44,
+    "n": 28
+   },
+   {
+    "customer": "CUST-025",
+    "tier": "Chronic",
+    "eur": 598291.45,
+    "n": 33
+   },
+   {
+    "customer": "CUST-010",
+    "tier": "Moderate",
+    "eur": 224880.46000000002,
+    "n": 13
+   },
+   {
+    "customer": "CUST-032",
+    "tier": "Chronic",
+    "eur": 175335.8,
+    "n": 6
+   },
+   {
+    "customer": "CUST-004",
+    "tier": "Chronic",
+    "eur": 172292.62,
+    "n": 6
+   },
+   {
+    "customer": "CUST-036",
+    "tier": "Moderate",
+    "eur": 162740.46,
+    "n": 5
+   },
+   {
+    "customer": "CUST-011",
+    "tier": "Chronic",
+    "eur": 124042.86,
+    "n": 5
+   },
+   {
+    "customer": "CUST-056",
+    "tier": "Chronic",
+    "eur": 118472.11,
+    "n": 4
+   },
+   {
+    "customer": "CUST-015",
+    "tier": "Moderate",
+    "eur": 95694.56,
+    "n": 4
+   }
+  ],
+  "tier_eur": {
+   "Chronic": 2893760.59,
+   "Moderate": 686207.41
+  }
+ }
+}
