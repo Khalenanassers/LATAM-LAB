@@ -11,10 +11,10 @@ What this script does, in plain words:
      and what the settings (class_weight, regularization, split) change.
   6. Works out the money at stake and who to call first.
   7. Sizes the problem for the whole company (late money by customer).
-  8. Saves everything to results.json, which Business Report/build_dashboard.py
-     turns into the dashboard.
+  8. Saves everything to results.json, which Business Report/make_charts.py
+     turns into the report charts.
 
-Run from any folder:  python Models/run_models.py   then   python "Business Report/build_dashboard.py"
+Run from any folder:  python Models/run_models.py   then   python "Business Report/make_charts.py"
 """
 import pathlib, json
 import pandas as pd, numpy as np
@@ -63,7 +63,7 @@ for t in ["Reliable", "Moderate", "Chronic"]:
     df["tier_" + t] = (df["customer_tier"] == t).astype(int)
 
 X_cols = ["log_amt", "month", "prior_n", "prior_late_rate", "tier_Reliable", "tier_Moderate", "tier_Chronic"]
-# Plain-English names for the clues (used by the dashboard).
+# Plain-English names for the clues.
 LABELS = {"log_amt": "Invoice size (log euros)", "month": "Month issued",
           "prior_n": "Invoices the customer had before",
           "prior_late_rate": "Customer's past late rate",
@@ -219,7 +219,7 @@ out["time_split"] = dict(accuracy=float(accuracy_score(yt, pt)), recall=float(re
 # 10. THE COMPANY'S SITUATION: LATE MONEY ACROSS ALL 800 INVOICES
 # ─────────────────────────────────────────────────────────────
 # Not about the model: the size of the problem. Late money by customer (top 10)
-# and its share of everything billed. Used by the first chart on the dashboard.
+# and its share of everything billed. Used by the late-money chart in the business reports.
 L = df[df.late_flag == 1]
 bycust = L.groupby(["customer_id", "customer_tier"]).amount_eur.agg(["sum", "size"]).reset_index().sort_values("sum", ascending=False)
 out["company"] = dict(billed=float(df.amount_eur.sum()), late_eur=float(L.amount_eur.sum()),
@@ -230,7 +230,7 @@ out["company"] = dict(billed=float(df.amount_eur.sum()), late_eur=float(L.amount
                       tier_eur={k: float(v) for k, v in L.groupby("customer_tier").amount_eur.sum().items()})
 
 # ─────────────────────────────────────────────────────────────
-# 11. SAVE RESULTS (read by build_dashboard.py) AND PRINT A SUMMARY
+# 11. SAVE RESULTS (read by make_charts.py) AND PRINT A SUMMARY
 # ─────────────────────────────────────────────────────────────
 json.dump(out, open(HERE / "results.json", "w"), indent=1)
 for r in out["models"] + [out["lr_unweighted"]]:

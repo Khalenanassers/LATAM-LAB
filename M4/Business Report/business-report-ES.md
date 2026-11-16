@@ -117,7 +117,7 @@ En términos simples: el equipo hace cerca de un tercio de las llamadas y alcanz
 Sí. Esto importa más que la elección del modelo.
 
 **La tecnología: gratuita.**
-Todo el análisis corre en Python (pandas, scikit-learn) en un portátil normal, con los resultados en una sola página web. Sin licencias, sin costos de nube, sin contratos con proveedores. La ejecución es repetible: una semilla aleatoria fija significa que cualquiera que la repita obtiene exactamente los mismos números.
+Todo el análisis corre en Python (pandas, scikit-learn) en un portátil normal, con los resultados en gráficos dentro de este informe. Sin licencias, sin costos de nube, sin contratos con proveedores. La ejecución es repetible: una semilla aleatoria fija significa que cualquiera que la repita obtiene exactamente los mismos números.
 
 **El modelo: transparente.**
 La regresión logística suma un puñado de pistas, como la tasa histórica de atraso del cliente, su nivel de riesgo y el tamaño de la factura. Cada pista tiene un peso que se puede leer, y para cada factura se ve qué pistas la empujaron hacia «tarde». Es lo contrario de una caja negra.

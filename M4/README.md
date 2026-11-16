@@ -19,12 +19,6 @@ A logistic regression flags risky invoices **before** they become late, so a sma
 
 The reports are written for the person who decides whom to call, not for the person who writes the code.
 
-## Interactive dashboard
-
-[`Business Report/M4_dashboard.html`](Business%20Report/M4_dashboard.html) is a single self-contained page. **Download it and open it in a browser** (GitHub shows HTML files as code). It covers the late-money picture, the model's results, every code setting explained in plain language, the weight of each clue, and a call list.
-
----
-
 ## Headline results
 
 | | |
@@ -67,14 +61,12 @@ M4/
 │   └── viva_customers.csv      # 59 customers
 ├── Models/
 │   ├── run_models.py           # trains and scores the models, writes results.json
-│   └── results.json            # output read by the dashboard and charts
+│   └── results.json            # output read by the charts
 ├── Business Report/
 │   ├── business-report-EN.md
 │   ├── business-report-ES.md
-│   ├── M4_dashboard.html       # interactive dashboard
-│   ├── build_dashboard.py      # results.json -> dashboard
 │   ├── make_charts.py          # results.json -> report charts (EN + ES)
-│   └── *.png                   # charts used in the reports
+│   └── *.png                   # charts used in the reports (same colors as the M4 brand)
 └── Reference/
     └── Data Sources.md         # where the data shape and calibration come from
 ```
@@ -85,7 +77,6 @@ Requires Python 3.11+ with `pandas`, `numpy`, `scikit-learn`, `matplotlib`.
 
 ```bash
 python Models/run_models.py                      # train, score, write Models/results.json
-python "Business Report/build_dashboard.py"      # rebuild the dashboard
 python "Business Report/make_charts.py"          # rebuild the report charts
 ```
 

@@ -117,7 +117,7 @@ In plain terms: the team makes about a third of the calls and reaches more than 
 Yes. This matters more than the model selection.
 
 **The technology stack: free.**
-The whole analysis runs in Python (pandas, scikit-learn) on a normal laptop, with the results shown in a single web page. No licenses, no cloud fees, no vendor contracts. The run is repeatable: a fixed random seed means anyone who reruns it gets exactly the same numbers.
+The whole analysis runs in Python (pandas, scikit-learn) on a normal laptop, with the results shown as charts in this report. No licenses, no cloud fees, no vendor contracts. The run is repeatable: a fixed random seed means anyone who reruns it gets exactly the same numbers.
 
 **The model: transparent.**
 Logistic Regression adds up a handful of clues, such as the customer's past late rate, their risk tier and the invoice size. Each clue has a weight you can read, and for every invoice you can see which clues pushed it toward "late". That is the opposite of a black box.
