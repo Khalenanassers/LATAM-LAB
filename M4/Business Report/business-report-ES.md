@@ -19,7 +19,7 @@ El dinero tardío no está repartido de forma pareja. Cinco clientes concentran 
 | CUST-010 | 13 de 40 | €224,880 |
 | CUST-032 | 6 de 6 | €175,336 |
 
-![Dinero tardío por cliente: 5 clientes concentran el 70% del dinero tardío](late_money_by_customer_es.png)
+![Dinero tardío por cliente: 5 clientes concentran el 70% del dinero tardío](images/late_money_by_customer_es.png)
 
 Es el mismo desajuste que vimos en el Mes 1: las cuentas que importan para su caja no son las que más facturan. Son las que tienen el hábito de pagar tarde.
 
@@ -78,7 +78,7 @@ Elegimos la **regresión logística**. Tiene la exactitud más baja de los cuatr
 
 **Lo que «piensa» el modelo.** La regresión logística da un peso a cada pista. El mayor, con diferencia, es el nivel de riesgo del cliente: un **pagador tardío crónico multiplica por 5.0 las probabilidades de «tarde»**, un **cliente confiable las reduce a 0.16**, y un cliente a veces tardío las multiplica por 1.8. La tasa histórica de atraso del cliente añade un empuje pequeño (1.17), mientras que el tamaño de la factura y el mes casi no importan.
 
-![Peso de cada pista en la regresión logística: el nivel del cliente domina](model_clue_weights_es.png)
+![Peso de cada pista en la regresión logística: el nivel del cliente domina](images/model_clue_weights_es.png)
 
 También probamos si un ajuste más flexible ayuda. No ayuda. En un rango de un millón de veces de la fuerza de regularización `C`, la exactitud sobre facturas nuevas se mantuvo entre **81% y 83%**, y la brecha entre entrenamiento y prueba nunca superó los 7 puntos. Con solo siete pistas, la regresión logística no puede memorizar el pasado como lo haría un árbol de decisión profundo. El valor por defecto basta.
 

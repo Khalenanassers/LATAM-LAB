@@ -19,7 +19,7 @@ The late money is not spread evenly. Five customers account for **70%** of it:
 | CUST-010 | 13 of 40 | €224,880 |
 | CUST-032 | 6 of 6 | €175,336 |
 
-![Late money by customer: 5 customers hold 70% of the late money](late_money_by_customer.png)
+![Late money by customer: 5 customers hold 70% of the late money](images/late_money_by_customer.png)
 
 This is the same mismatch we saw in Month 1: the accounts that matter for your cash are not the ones that bill the most. They are the ones with a habit of paying late.
 
@@ -78,7 +78,7 @@ We chose **Logistic Regression**. It has the lowest accuracy of the four models,
 
 **What the model "thinks".** Logistic regression gives every clue a weight. The biggest by far is the customer's risk tier: a **chronic late payer multiplies the odds of "late" by 5.0**, a **reliable customer cuts them to 0.16**, and a sometimes-late customer raises them by 1.8. The customer's past late rate adds a small push (1.17), while invoice size and month barely matter.
 
-![Weight of each clue in the logistic regression: customer tier dominates](model_clue_weights.png)
+![Weight of each clue in the logistic regression: customer tier dominates](images/model_clue_weights.png)
 
 We also tested whether a more flexible setting helps. It does not. Across a 1,000,000-fold range of the regularization strength `C`, the score on new invoices stayed between **81% and 83%**, and the gap between train and test never exceeded 7 points. With only seven clues, logistic regression cannot memorize the past the way a deep decision tree can. The simple default is enough.
 

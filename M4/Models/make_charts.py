@@ -1,8 +1,8 @@
 """
-Saves the report charts (English and Spanish) from Models/results.json:
+Saves the report charts (English and Spanish) from results.json into "Business Report/images":
   late_money_by_customer[_es].png   late money by customer (the size of the problem)
   model_clue_weights[_es].png       which clues push an invoice toward "late" (the model's reasoning)
-Run after Models/run_models.py:  python "Business Report/make_charts.py"
+Run after run_models.py:  python Models/make_charts.py
 """
 import json, pathlib
 import matplotlib.pyplot as plt
@@ -15,7 +15,9 @@ plt.rcParams.update({"font.family": ["Segoe UI", "DejaVu Sans"], "figure.facecol
                      "xtick.color": INK2, "ytick.color": INK, "axes.grid": True, "grid.color": LINE, "axes.axisbelow": True})
 
 here = pathlib.Path(__file__).resolve().parent
-R = json.loads((here.parent / "Models" / "results.json").read_text(encoding="utf8"))
+OUT = here.parent / "Business Report" / "images"
+OUT.mkdir(parents=True, exist_ok=True)
+R = json.loads((here / "results.json").read_text(encoding="utf8"))
 K, LR = R["company"], R["lr"]
 
 T = {
@@ -59,7 +61,7 @@ for lang, t in T.items():
     ax.legend(handles=[plt.Rectangle((0, 0), 1, 1, color=col["Chronic"]), plt.Rectangle((0, 0), 1, 1, color=col["Moderate"])],
               labels=[t["chronic"], t["mod"]], loc="lower right", frameon=False, labelcolor=INK2)
     fig.text(0.01, -0.01, t["foot1"].format(n=K["n_invoices"], b=K["billed"] / 1e6), fontsize=8, color=INK2)
-    plt.tight_layout(); plt.savefig(here / f"late_money_by_customer{t['suf']}.png", dpi=150, bbox_inches="tight"); plt.close()
+    plt.tight_layout(); plt.savefig(OUT / f"late_money_by_customer{t['suf']}.png", dpi=150, bbox_inches="tight"); plt.close()
 
     # Chart 2: clue weights of the logistic regression
     cs = sorted(LR["coefs"], key=lambda c: c["coef"])
@@ -76,5 +78,5 @@ for lang, t in T.items():
     ax.text(2.25, -1.05, t["toward_late"] + " →", ha="right", fontsize=9, color=BAD)
     ax.text(-2.45, -1.05, "← " + t["toward_ok"], ha="left", fontsize=9, color=GOOD)
     fig.text(0.01, -0.01, t["foot2"], fontsize=8, color=INK2)
-    plt.tight_layout(); plt.savefig(here / f"model_clue_weights{t['suf']}.png", dpi=150, bbox_inches="tight"); plt.close()
+    plt.tight_layout(); plt.savefig(OUT / f"model_clue_weights{t['suf']}.png", dpi=150, bbox_inches="tight"); plt.close()
 print("ok")

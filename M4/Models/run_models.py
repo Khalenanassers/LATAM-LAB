@@ -11,10 +11,10 @@ What this script does, in plain words:
      and what the settings (class_weight, regularization, split) change.
   6. Works out the money at stake and who to call first.
   7. Sizes the problem for the whole company (late money by customer).
-  8. Saves everything to results.json, which Business Report/make_charts.py
+  8. Saves everything to results.json, which Models/make_charts.py
      turns into the report charts.
 
-Run from any folder:  python Models/run_models.py   then   python "Business Report/make_charts.py"
+Run from any folder:  python Models/run_models.py   then   python Models/make_charts.py
 """
 import pathlib, json
 import pandas as pd, numpy as np

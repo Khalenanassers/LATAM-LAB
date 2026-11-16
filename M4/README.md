@@ -30,9 +30,15 @@ The reports are written for the person who decides whom to call, not for the per
 | Calls needed | 50 instead of 160 (**-69%**) |
 | Doing nothing | 79.4% accurate, **catches 0 late invoices** |
 
-![Late money by customer](Business%20Report/late_money_by_customer.png)
+### The problem: late money is concentrated in a few customers
 
-![Weight of each clue in the model](Business%20Report/model_clue_weights.png)
+![Late money by customer](Business%20Report/images/late_money_by_customer.png)
+
+### The model: it mostly reads the customer's risk tier
+
+![Weight of each clue in the model](Business%20Report/images/model_clue_weights.png)
+
+Spanish versions of both charts: [dinero tardío por cliente](Business%20Report/images/late_money_by_customer_es.png) · [peso de cada pista](Business%20Report/images/model_clue_weights_es.png)
 
 **Honest caveats** (more in the reports): the test has only 33 late invoices; the model mostly reads the customer's risk tier, which is also how the practice data was built; and on a strict past-to-future split the model is right on only 40% of its alarms, so the random-split scores are a best case.
 
@@ -50,34 +56,34 @@ The reports are written for the person who decides whom to call, not for the per
 
 ---
 
-## Repository layout
+## Folder structure
 
 ```
 M4/
 ├── README.md
-├── Data/
-│   ├── generate_dataset.R      # builds the practice dataset (R)
-│   ├── viva_invoices.csv       # 800 invoices
-│   └── viva_customers.csv      # 59 customers
-├── Models/
-│   ├── run_models.py           # trains and scores the models, writes results.json
-│   └── results.json            # output read by the charts
-├── Business Report/
+├── Data/                          # inputs
+│   ├── generate_dataset.R         # builds the practice dataset (R)
+│   ├── viva_invoices.csv          # 800 invoices
+│   └── viva_customers.csv         # 59 customers
+├── Models/                        # code and outputs
+│   ├── run_models.py              # trains and scores the models, writes results.json
+│   ├── make_charts.py             # results.json -> report charts (EN + ES)
+│   └── results.json               # model output
+├── Business Report/               # what the decision-maker reads
 │   ├── business-report-EN.md
 │   ├── business-report-ES.md
-│   ├── make_charts.py          # results.json -> report charts (EN + ES)
-│   └── *.png                   # charts used in the reports (same colors as the M4 brand)
+│   └── images/                    # 4 charts in the M4 brand colors (EN + ES)
 └── Reference/
-    └── Data Sources.md         # where the data shape and calibration come from
+    └── Data Sources.md            # where the data shape and calibration come from
 ```
 
 ## Reproduce it
 
-Requires Python 3.11+ with `pandas`, `numpy`, `scikit-learn`, `matplotlib`.
+Requires Python 3.11+ with `pandas`, `numpy`, `scikit-learn`, `matplotlib`. Run from the `M4/` folder:
 
 ```bash
-python Models/run_models.py                      # train, score, write Models/results.json
-python "Business Report/make_charts.py"          # rebuild the report charts
+python Models/run_models.py      # train, score, write Models/results.json
+python Models/make_charts.py     # rebuild the report charts in Business Report/images
 ```
 
 The seed is fixed (2995), so reruns give identical numbers. To regenerate the dataset itself, run `Data/generate_dataset.R` in R.
